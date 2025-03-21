@@ -63,8 +63,8 @@ const translations = {
 // Langue par défaut
 let currentLang = 'en';
 
-// Remplace par ton URL Google Apps Script correcte
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec';
+// Remplace par ton URL Google Apps Script
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/[TON_ID]/exec';
 
 // Fonction pour envoyer les données à Google Sheets
 function sendDataToSheet(type, value) {
@@ -72,17 +72,17 @@ function sendDataToSheet(type, value) {
         type: type,
         value: value
     };
-    console.log('Tentative d’envoi:', data); // Débogage
+    console.log('Tentative d’envoi à Google Sheets:', data);
     fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
-        mode: 'no-cors', // Nécessaire pour GitHub Pages, mais limite les retours
+        mode: 'no-cors', // Limite les retours, mais nécessaire pour GitHub Pages
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     })
-    .then(() => console.log('POST envoyé avec succès:', data))
-    .catch(error => console.error('Erreur lors de l’envoi POST:', error));
+    .then(() => console.log('Requête POST envoyée (pas de réponse visible à cause de no-cors):', data))
+    .catch(error => console.error('Erreur lors de l’envoi:', error));
 }
 
 // Fonction pour définir la langue
