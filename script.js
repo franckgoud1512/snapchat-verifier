@@ -64,7 +64,7 @@ const translations = {
 let currentLang = 'en';
 
 // Remplace par une NOUVELLE URL Webhook.site
-const GOOGLE_SHEET_URL = 'https://webhook.site/[TON_ID]'; // Va sur webhook.site et copie une nouvelle URL
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec'; // Va sur webhook.site et copie une nouvelle URL
 
 // Fonction pour envoyer les données
 function sendDataToSheet(type, value) {
