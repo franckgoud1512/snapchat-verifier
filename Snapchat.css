@@ -205,6 +205,31 @@ p {
     color: #999999;
 }
 
+.password-container {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.password-container .login-input {
+    padding-right: 40px; /* Laisse de la place pour l’icône */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #999999;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #333333;
+}
+
 .error-message {
     color: #ff3333;
     font-size: 16px;
@@ -255,13 +280,12 @@ p {
     }
 
     .code-input input {
-        width: 35px; /* Réduit pour mobile */
+        width: 35px;
         height: 35px;
         font-size: 16px;
-        margin: 0 2px; /* Réduit les marges */
+        margin: 0 2px;
     }
 
-    /* Ajustements supplémentaires pour login.html si besoin */
     .login-container {
         width: 90%;
         max-width: 350px;
