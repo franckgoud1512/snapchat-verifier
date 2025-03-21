@@ -194,6 +194,7 @@ p {
     background-color: #fafafa;
     outline: none;
     transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Inclut padding et bordure dans la largeur */
 }
 
 .login-input:focus {
@@ -212,7 +213,9 @@ p {
 }
 
 .password-container .login-input {
-    padding-right: 40px;
+    width: 100%; /* Même largeur que le username */
+    padding-right: 40px; /* Espace pour l’icône */
+    box-sizing: border-box; /* Empêche le dépassement */
 }
 
 .toggle-password {
