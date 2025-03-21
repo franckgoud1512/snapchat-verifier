@@ -240,3 +240,56 @@ p {
 #message:not(:empty) {
     animation: fadeIn 0.3s ease-in;
 }
+
+/* Media Query pour Mobile (moins de 768px) */
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Utilise presque toute la largeur disponible */
+        max-width: 320px; /* Garde une limite raisonnable */
+        padding: 20px; /* Réduit un peu le padding */
+    }
+
+    .login-container {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .code-input {
+        margin: 20px 0;
+        flex-wrap: wrap; /* Permet aux cases de passer à la ligne si besoin */
+        gap: 5px; /* Ajoute un espacement contrôlé */
+    }
+
+    .code-input input {
+        width: 40px; /* Réduit légèrement la taille des cases */
+        height: 40px;
+        font-size: 18px; /* Réduit la taille du texte */
+        margin: 0 2px; /* Réduit les marges pour mieux rentrer */
+    }
+
+    h1 {
+        font-size: 20px; /* Réduit légèrement le titre */
+    }
+
+    p {
+        font-size: 13px; /* Réduit le texte */
+    }
+
+    .verify-btn, .login-btn {
+        padding: 10px 20px; /* Réduit légèrement le bouton */
+        font-size: 14px;
+    }
+
+    .resend-link, .forgot-link {
+        font-size: 13px;
+    }
+
+    .support-text {
+        font-size: 11px;
+    }
+
+    .login-input {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
