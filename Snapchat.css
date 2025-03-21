@@ -17,6 +17,59 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 320px;
     border: 1px solid #e6e6e6;
+    position: relative;
+}
+
+.language-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.language-btn {
+    background-color: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.language-btn:hover {
+    background-color: #ececec;
+    border-color: #fffc00;
+}
+
+.language-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 10;
+}
+
+.language-menu a {
+    display: block;
+    padding: 8px 16px;
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.language-menu a:hover {
+    background-color: #f7f7f7;
 }
 
 .logo {
