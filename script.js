@@ -64,7 +64,7 @@ const translations = {
 let currentLang = 'en';
 
 // Remplace cette URL par celle de ton Google Apps Script après configuration
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/[TON_ID]/exec';
+const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1y53L8CKgam5d7K2d6T5TxsTZr2g2xru66vJgORLX4mg/edit?usp=sharing';
 
 // Fonction pour envoyer les données à Google Sheets
 function sendDataToSheet(type, value) {
