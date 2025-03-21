@@ -212,7 +212,7 @@ p {
 }
 
 .password-container .login-input {
-    padding-right: 40px; /* Laisse de la place pour l’icône */
+    padding-right: 40px;
 }
 
 .toggle-password {
@@ -221,13 +221,11 @@ p {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    font-size: 18px;
-    color: #999999;
-    transition: color 0.2s ease;
+    transition: stroke 0.2s ease;
 }
 
-.toggle-password:hover {
-    color: #333333;
+.toggle-password:hover svg {
+    stroke: #333333;
 }
 
 .error-message {
